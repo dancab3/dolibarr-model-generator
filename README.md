@@ -2,6 +2,7 @@
 
 ![Build](https://github.com/dancab3/dolibarr-model-generator/actions/workflows/build.yml/badge.svg)
 ![GitHub release](https://img.shields.io/github/v/release/dancab3/dolibarr-model-generator)
+[![Download AppImage](https://img.shields.io/github/downloads/dancab3/dolibarr-model-generator/latest/total?label=📥%20Download%20AppImage)](https://github.com/dancab3/dolibarr-model-generator/releases/latest)
 
 🚀 Générateur de modèles de factures récurrentes pour [Dolibarr ERP/CRM](https://www.dolibarr.org/)
 
