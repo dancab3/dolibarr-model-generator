@@ -1,20 +1,45 @@
 # Dolibarr Model Generator
 
-Outil de génération de modèles de factures récurrentes pour Dolibarr ERP.
+![Build Status](https://github.com/dancab3/dolibarr-model-generator/actions/workflows/build.yml/badge.svg)
 
-## Contenu
-- `.deb` installable
-- `.AppDir` pour AppImage
-- Script de build + dépendances
-- Fichier `.desktop` et icône
+🚀 Générateur de modèles de factures récurrentes pour [Dolibarr ERP/CRM](https://www.dolibarr.org/)
 
-## Installation rapide
+## Fonctions principales
+
+- Import CSV de modèles client
+- Génération automatique de factures brouillon
+- Historique et suivi par interface web
+- Export CSV des factures créées
+- Support AppImage et .deb
+
+## 📦 Installation
+
+### A. Avec le script `.deb`
+
 ```bash
 chmod +x build.sh setup_dependencies.sh
 ./build.sh
 ```
 
-## AppImage
+### B. Avec AppImage
+
 ```bash
 ./appimagetool-x86_64.AppImage DolibarrModelGenerator.AppDir
 ```
+
+## 🚧 Dépendances
+
+- Python 3
+- Flask
+- pandas
+- dotenv
+- requests
+
+## 📁 Contenu
+
+- `build.sh` : construction du .deb
+- `setup_dependencies.sh` : installation des dépendances
+- `dolibarr-model-generator.desktop` : lanceur Linux
+- `dolibarr_icon.png` : icône
+- `DolibarrModelGenerator.AppDir` : structure AppImage
+- `dolibarr-model-generator_pkg` : structure .deb
