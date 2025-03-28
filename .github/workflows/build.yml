@@ -1,0 +1,56 @@
+name: Build Dolibarr Model Generator
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+    name: Build .deb Package
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg fakeroot python3-flask python3-dotenv python3-pandas python3-requests
+
+      - name: Build .deb package
+        run: |
+          dpkg-deb --build dolibarr-model-generator_pkg
+
+      - name: Upload .deb as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dolibarr-deb-package
+          path: dolibarr-model-generator_pkg.deb
+
+  build-appimage:
+    runs-on: ubuntu-latest
+    name: Build AppImage
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download appimagetool
+        run: |
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+
+      - name: Build AppImage
+        run: |
+          ./appimagetool-x86_64.AppImage DolibarrModelGenerator.AppDir
+
+      - name: Upload AppImage
+        uses: actions/upload-artifact@v3
+        with:
+          name: dolibarr-appimage
+          path: DolibarrModelGenerator*.AppImage
