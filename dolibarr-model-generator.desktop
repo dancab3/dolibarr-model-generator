@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Dolibarr Model Generator
+Comment=Facturation récurrente Dolibarr
+Exec=python3 /opt/dolibarr-model-generator/app.py
+Icon=dolibarr_icon
+Terminal=true
+Type=Application
+Categories=Utility;Development;

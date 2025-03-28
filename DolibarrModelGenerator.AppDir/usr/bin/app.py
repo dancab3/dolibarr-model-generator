@@ -1,0 +1,1 @@
+print('Dolibarr app running')

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Dolibarr App
+Exec=dolibarr-launch
+Icon=dolibarr_icon
+Type=Application
