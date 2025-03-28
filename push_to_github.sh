@@ -1,29 +1,32 @@
 #!/bin/bash
 set -e
 
-# Vérifier si le dossier courant est un dépôt git
-if [ ! -d ".git" ]; then
-  echo "⚠️ Ce dossier n'est pas un dépôt Git. Utilisez 'git init' d'abord."
+# Vérifie que GITHUB_TOKEN est bien défini
+if [ -z "$GITHUB_TOKEN" ]; then
+  echo "❌ Variable d'environnement GITHUB_TOKEN manquante."
+  echo "Définissez-la avec : export GITHUB_TOKEN=xxxxxxxxxxxxxxxx"
   exit 1
 fi
 
-# Renommer la branche courante en main si ce n'est pas déjà fait
+# Initialisation Git si nécessaire
+if [ ! -d ".git" ]; then
+  git init
+fi
+
+# Renommer branche actuelle en main
 git branch | grep -q "main" || git branch -m main
 
-# (Re)configurer l'origin
-echo "🔗 Configuration du dépôt distant origin..."
+# Configuration distante avec token
 git remote remove origin 2>/dev/null || true
-git remote add origin https://github.com/dancab3/dolibarr-model-generator.git
+git remote add origin https://dancab3:$GITHUB_TOKEN@github.com/dancab3/dolibarr-model-generator.git
 
-# Commit si nécessaire
+# Commit si des modifications existent
 if [ -n "$(git status --porcelain)" ]; then
-  echo "💾 Commit des changements..."
   git add .
   git commit -m "Initial commit"
 else
   echo "✅ Aucun changement à committer."
 fi
 
-# Push vers GitHub
-echo "🚀 Envoi vers GitHub..."
+# Push sécurisé
 git push -u origin main
