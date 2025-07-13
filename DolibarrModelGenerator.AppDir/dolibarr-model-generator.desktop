@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=Dolibarr App
-Exec=dolibarr-launch
+Exec=AppRun
 Icon=dolibarr_icon
 Type=Application
